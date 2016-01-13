@@ -1,0 +1,26 @@
+{
+  "name": "game1",
+  "description": "guerra robors",
+  "main": "server.js",
+  "authors": [
+    "Widrogo <amils21@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "directory": "public/assets/lib/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "bootstrap": "~3.3.6",
+    "angular": "~1.4.8",
+    "angular-animate": "~1.4.8",
+    "angular-route": "~1.4.8"
+  }
+}

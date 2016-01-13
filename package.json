@@ -1,0 +1,31 @@
+{
+  "name": "game1",
+  "version": "1.0.0",
+  "description": "guerra robors",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "jsonwebtoken": "^5.5.4",
+    "morgan": "^1.6.1",
+    "multer": "^1.1.0",
+    "mysql": "^2.10.2",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.4"
+  }
+}

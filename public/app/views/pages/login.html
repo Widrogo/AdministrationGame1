@@ -1,0 +1,73 @@
+<div class="row col-sm-6 col-sm-offset-3" >
+    <div class="jumbotron">
+        <h3>Login</h3>
+        <form ng-submit="doLogin()">
+            <!-- EMAIL INPUT -->
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" ng-model="email">
+            </div>
+            <!-- PASSWORD INPUT -->
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" ng-model="contrasena">
+            </div>
+            <div class="form-group">
+                <label>¿Desea registrarse en la pagina?</label>
+                <a href="/newUsuario">Registro</a>
+            </div>
+
+            <div class="alert alert-danger" ng-if="error">
+                {{ error }}
+            </div>
+            <!-- LOGIN BUTTON -->
+            <button type="submit" class="btn btn-block btn-primary">
+                <span ng-if="!processing">Login</span>
+                <span ng-if="processing" class="spinner"><span class="glyphicon glyphicon-repeat"></span></span>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-icon-container">
+                <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+                <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+            </div>
+            <a class="navbar-brand" href="/"><i class="fa fa-rebel"></i>&nbsp;&nbsp;Sociedad F</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="logout" ng-if="loggedIn == true">
+                <div class="form-group has-feedback">
+                    <button type="button" class="btn btn-success pull-right" ng-click="doLogout()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;logout</button>
+                </div>
+            </form>
+            <ul class="nav navbar-nav">
+                <li class="hidden-xs" ng-if="loggedIn == false">
+                    <a href="/login" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-sign-in white">
+                    </i>&nbsp;&nbsp;Login</a>
+                </li>
+                <li>
+                    <a href="/about" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn">
+                        <i class="fa fa-question-circle white"></i>&nbsp;&nbsp;Informacion</a>
+                </li>
+                <li class="dropdown">
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog white"></i>&nbsp;&nbsp;Herramientas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Presentacion en vivo</a></li>
+                        <li class="divider hidden-xs"></li>
+                        <li><a href="/newPresentacion" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Hacer una presentacion</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Descargar <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/assets/apk/sociedadfv1_12.apk" download="sociedadfv1_12.apk" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Android</a></li>
+                        <li><a href="#" download="#" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Informacion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>

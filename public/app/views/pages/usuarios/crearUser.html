@@ -1,0 +1,109 @@
+<div class="container">
+    <div class="row" ng-controller="userCreateController as up">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="well well-sm">
+                <form class="form-horizontal" name="up.upload_form">
+                    <fieldset>
+                        <legend class="text-center">Crear Usuario</legend>
+                        <div class="form-group">
+                            <label class="col-xs-12">Nombre Completo</label>
+                            <div class="col-xs-12">
+                                <input type="text" class="form-control" ng-model="up.nombre">
+                            </div>
+                        </div>
+                        <!-- Name input-->
+                        <div class="form-group">
+                            <label class="col-xs-12">Correo Electronico</label>
+                            <div class="col-xs-12">
+                                <input type="text" class="form-control" ng-model="up.email">
+                            </div>
+                        </div>
+                        <!-- Email input-->
+                        <div class="form-group">
+                            <label class="col-xs-12">Contraseña</label>
+                            <div class="col-xs-12">
+                                <input type="password" class="form-control" ng-model="up.contrasena">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-12">¿Ya Se registro? <a href="/login"> Login</a></label>
+                        </div>
+                        <!-- SOLO IMAGEN -->
+                        <label class="control-label">Ingrese Imagen</label>
+                        <div class="row">
+                            <div class="col-xs-3">
+                            <span class="btn btn-primary btn-file">
+                                Imagen&hellip; <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"/>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="!!up.file">
+                            <div class="col-lg-offset-4 col-xs-4 col-md-4 thumbnail">
+                                <img style="width:100px;" ng-show="!!up.file" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+                            </div>
+                            <div style="color:red;" ng-if="up.uploadError">{{up.uploadError}}</div>
+                        </div>
+                        <!-- SOLO IMAGEN  FIN-->
+                        <br>
+                        <!-- Form actions -->
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <button type="submit" ng-click="up.submit()" class="btn btn-success btn-lg btn-block">Crear Usuario</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="row show-hide-message" ng-show="message">
+                    <div class="col-xs-12">
+                        <div class="alert alert-info">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-icon-container">
+                <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+                <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+            </div>
+            <a class="navbar-brand" href="/"><i class="fa fa-rebel"></i>&nbsp;&nbsp;Sociedad F</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="logout" ng-if="loggedIn == true">
+                <div class="form-group has-feedback">
+                    <button type="button" class="btn btn-success pull-right" ng-click="doLogout()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;logout</button>
+                </div>
+            </form>
+            <ul class="nav navbar-nav">
+                <li class="hidden-xs" ng-if="loggedIn == false">
+                    <a href="/login" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-sign-in white">
+                    </i>&nbsp;&nbsp;Login</a>
+                </li>
+                <li>
+                    <a href="/about" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn">
+                        <i class="fa fa-question-circle white"></i>&nbsp;&nbsp;Informacion</a>
+                </li>
+                <li class="dropdown">
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog white"></i>&nbsp;&nbsp;Herramientas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Presentacion en vivo</a></li>
+                        <li class="divider hidden-xs"></li>
+                        <li><a href="/newPresentacion" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Hacer una presentacion</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Descargar <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/assets/apk/sociedadfv1_12.apk" download="sociedadfv1_12.apk" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Android</a></li>
+                        <li><a href="#" download="#" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Informacion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>

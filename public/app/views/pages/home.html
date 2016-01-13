@@ -1,0 +1,116 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-icon-container">
+                <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+                <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+            </div>
+            <a class="navbar-brand" href="/"><i class="fa fa-rebel"></i>&nbsp;&nbsp;Sociedad F</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="logout" ng-if="loggedIn == true">
+                <div class="form-group has-feedback">
+                    <button type="button" class="btn btn-success pull-right" ng-click="doLogout()"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;logout</button>
+                </div>
+            </form>
+            <ul class="nav navbar-nav">
+                <li class="hidden-xs" ng-if="loggedIn == false">
+                    <a href="/login" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-sign-in white">
+                    </i>&nbsp;&nbsp;Login</a>
+                </li>
+                <li>
+                    <a href="/about" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn">
+                        <i class="fa fa-question-circle white"></i>&nbsp;&nbsp;Informacion</a>
+                </li>
+                <li class="dropdown"  ng-if="loggedIn == true">
+                    <a id="toolsactions" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-plus white"></i>&nbsp;&nbsp;Usuario <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/presentacionUsuario/{{user.id}}" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Mis presentaciones</a></li>
+                        <li><a href="/misfastnotes/{{user.id}}" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Mis notas rapidas</a></li>
+                        <li class="divider hidden-xs"></li>
+                        <li><a href="/fastnote/{{user.id}}" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;Crear nota rapida</a></li>
+                        <li><a href="/newPresentacion" data-toggle="collapse" data-target=".navbar-collapse.in" id="lon-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Creae nota Elaborada</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog white"></i>&nbsp;&nbsp;Notas <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/notas" data-toggle="collapse" data-target=".navbar-collapse.in" id="full1-extent-btn"><i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;Ver solo notas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Descargar <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/assets/apk/sociedadfv1_12.apk" download="sociedadfv1_12.apk" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Android</a></li>
+                        <li><a href="#" download="#" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Informacion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+<div id="container">
+    <div id="sidebar" style="width: 410px;">
+        <div class="sidebar-wrapper">
+            <div class="panel panel-default" id="features">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Visualizaciones de interes
+                        <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <input type="text" class="form-control search" placeholder="Filtro" ng-model="search.title" />
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-table">
+                    <div class="row list_special" ng-repeat="marker in markers | orderBy : '-date' | filter:search:strict">
+                        <div class="[ panel panel-default ] panel-google-plus" ng-click="openInfoWindow($event, marker)">
+                            <div class="dropdown">
+                                <span class="dropdown-toggle" type="button" data-toggle="dropdown" style="color: #262626">
+                                    <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="color: #262626">Descargar presentacioin</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="llevarA(marker.presentaciones_id)" style="color: #262626">Ver presentacioin</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" style="color: #262626">Comentar presentacion</a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-google-plus-tags" >
+                                <ul>
+                                    <li><strong>#{{ marker.nombre_categoria }}</strong> </li>
+                                </ul>
+                            </div>
+                            <div class="panel-heading">
+                                <img class="[ img-circle pull-left ]" ng-src="{{marker.imagen}}" alt="Mouse0270" />
+                                <h3>{{marker.title}}</h3>
+                                <h5><span>Fecha publicacion</span> - <span>{{ marker.date | date:'mediumDate' }}</span> </h5>
+                            </div>
+                            <!--
+                            <div class="panel-body">
+                                <p>Do people born in 2000 get to choose if they are Generation Y or Generation Z? How do you decide what generation you want to belong to?</p>
+                            </div>
+
+                            <div class="panel-footer">
+                                <button type="button" class="[ btn btn-default ]">+1</button>
+                                <button type="button" class="[ btn btn-default ]">
+                                    <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                                </button>
+                                <div class="input-placeholder">Add a comment...</div>
+                            </div>
+                            <div class="panel-google-plus-comment">
+                                <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                                <div class="panel-google-plus-textarea">
+                                    <textarea rows="4"></textarea>
+                                    <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                                    <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map"></div>
+</div>
