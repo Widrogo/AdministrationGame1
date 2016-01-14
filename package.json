@@ -8,13 +8,17 @@
     "application",
     "openshift"
   ],
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+  "author": {
+    "name": "OpenShift",
+    "email": "ramr@example.org",
+    "url": "http://www.openshift.com/"
   },
-  "author": "",
+  "homepage": "http://www.openshift.com/",
   "license": "ISC",
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
@@ -27,5 +31,10 @@
     "mysql": "^2.10.2",
     "path": "^0.12.7",
     "socket.io": "^1.4.4"
-  }
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+  "main": "server.js"
 }
