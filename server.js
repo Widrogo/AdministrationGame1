@@ -6,7 +6,7 @@ var server = http.createServer(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var User = require('./app/routes/user.server.routes');
+//var User = require('./app/routes/user.server.routes');
 
 var apiRouter = express.Router();
 var bodyParser = require('body-parser');
